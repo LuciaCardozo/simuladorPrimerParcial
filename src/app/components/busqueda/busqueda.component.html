@@ -1,0 +1,47 @@
+ <!-- Custom styles for this template -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
+    <a class="navbar-brand m-1" href="#">Movies UTN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/actor/alta']">Alta actor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/pelicula/alta']">Alta pelicula</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0 d-flex">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" disabled>
+        <button class="btn btn-success my-2 my-sm-0" disabled>Search</button>
+    </form>
+  </div>
+</nav>
+
+<main role="main">
+  <h3 class="text-center mt-3">Lista de peliculas</h3>
+
+  <app-tabla-pelicula
+  [peliculas]="listaPeliculas"
+  (clickPeli)="cargarDatos($event)"></app-tabla-pelicula>
+  <div class="container" *ngIf="mostrarDatos">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="text-center">
+          <h5>{{datos.titulo}}</h5>
+          <div class="d-grid justify-content-center">
+            Tipo:<input class="text-center" value="{{datos.tipo}}">
+            Año de estreno: <input class="text-center" type="number" value="{{datos.anio}}">
+          </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-outline-success m-2">Editar</button>
+        <button (click)="mostrarDatos = false" class="btn btn-outline-danger m-2">Cerrar</button>
+      </div>
+    </div>
+    <hr>
+  </div> <!-- /container -->
+</main>
